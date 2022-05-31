@@ -11,7 +11,9 @@ export const getImages = async (req, res) => {
   if (images) {
     images = await images.json()
     res.status(200).json({ success: true, data: images })
-  } else {
-    throw new Error(err.message)
+  } else if (res.statusCode === 404) {
+    res.status(404).json({ success: false, error: 'No images found' })
+  } else if (res.statusCode === 500) {
+    res.status(500).json({ success: false, error: 'Something went wrong' })
   }
 }

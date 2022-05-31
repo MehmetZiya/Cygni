@@ -25,8 +25,9 @@ const getImages = async (tag, page) => {
 
     pageNumber.innerHTML = page
     return images.data.photos.photo
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
+    info.innerHTML = 'Photo link is not available'
   }
 }
 
@@ -38,6 +39,9 @@ const updateAlbum = async (tag, page) => {
   info.innerHTML = ''
   return photos
 }
+const isError = () => {
+  photos.innerHTML = 'No images found'
+}
 
 //Inital photo album tag name is static
 getImages(tag, page)
@@ -46,10 +50,10 @@ getImages(tag, page)
       (image) =>
         (photos.innerHTML += ` 
   <div class='imageWrapper'>
-  <img src=${photoURL}/${image.server}/${image.id}_${image.secret}_c.jpg} alt=${image.id} />
+  <img src= ${photoURL}/${image.server}/${image.id}_${image.secret}_c.jpg} alt='${image.id}' onerror="isError()" />
   </div>
   `)
     )
   )
 
-  .catch((err) => (info.innerHTML = 'Images could not find ' + err))
+  .catch((err) => (info.innerHTML = 'Images could not find ' + err.message))

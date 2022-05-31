@@ -9,7 +9,7 @@ nextBtn.addEventListener('click', (e) => {
         (image) =>
           (photos.innerHTML += ` 
   <div class='imageWrapper'>
-  <img src=${photoURL}/${image.server}/${image.id}_${image.secret}_c.jpg}  />
+  <img src=${photoURL}/${image.server}/${image.id}_${image.secret}_c.jpg} onerror="isError()"  />
   </div>
   `)
       )
@@ -32,7 +32,7 @@ preBtn.addEventListener('click', (e) => {
         (image) =>
           (photos.innerHTML += ` 
   <div class='imageWrapper'>
-  <img src=${photoURL}/${image.server}/${image.id}_${image.secret}_c.jpg}  />
+  <img src=${photoURL}/${image.server}/${image.id}_${image.secret}_c.jpg} onerror="isError()" />
   </div>
   `)
       )
